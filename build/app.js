@@ -361,7 +361,7 @@ function posAt(d,t){if(!W)return null;const ev=dayTimeline(d);const stp=W.D.meta
   const last=P().days[d].stops[P().days[d].stops.length-1];const p=stp[last.id];return{x:p[0],z:p[1],label:last.name};}
 function alongPath(pts,k){let L=0;const seg=[];for(let i=1;i<pts.length;i++){const d=Math.hypot(pts[i][0]-pts[i-1][0],pts[i][1]-pts[i-1][1]);seg.push(d);L+=d;}
   let t=k*L;for(let i=0;i<seg.length;i++){if(t<=seg[i]){const f=seg[i]?t/seg[i]:0;return[pts[i][0]+(pts[i+1][0]-pts[i][0])*f,pts[i][1]+(pts[i+1][1]-pts[i][1])*f];}t-=seg[i];}return pts[pts.length-1];}
-const modeKo=m=>({train:"기차",walk:"도보",taxi:"택시",van:"전용 밴",bus:"버스"}[m]||m);
+const modeKo=m=>({train:"기차",walk:"도보",taxi:"택시",van:"전용 차량",bus:"버스"}[m]||m);
 function updMe(){if(!W)return;const me=W.me;if(S.day<0){me.el.hidden=true;$("#whereTxt").textContent="";return;}
   const p=posAt(S.day,S.time);if(!p){me.el.hidden=true;return;}me.x=p.x;me.z=p.z;me.y=Hh(p.x,p.z)+10;me.el.hidden=false;$("#whereTxt").textContent=p.label;dirty=true;}
 
@@ -449,7 +449,7 @@ function renderView(){const v=S.view;let h="";const p=P();
       <div class="kpis"><div class="kpi"><small>가족 5명 예상 비용</small><b>${won(cost)}</b></div><div class="kpi"><small>1인당</small><b>${won(cost/5)}</b></div>
       <div class="kpi"><small>출발일</small><b>${d0.label.split(" ~ ")[0]}</b></div><div class="kpi"><small>12월 날씨</small><b>${S.c==="hk"?"영하, 눈":"20°C 안팎, 비"}</b></div></div>
       <div class="btns"><button class="btn wide" data-v="plan">일정 보기</button><button class="btn wide" data-v="map">3D 지도 보기</button></div></section>`;
-    h+=`<section class="card"><h2 style="font-size:19px">여행지는 북해도로 정했어요</h2><p>대만과 비교한 끝에 가족 투표로 북해도(홋카이도)가 됐어요. 눈 덮인 삿포로와 오타루, 온천 료칸 1박이 이 여행의 중심이에요.</p></section>
+    h+=`<section class="card"><h2 style="font-size:19px">여행지는 북해도로 정했어요</h2><p>대만과 비교해 본 끝에 북해도(홋카이도)로 정했어요. 눈 덮인 삿포로와 오타루, 온천 료칸 1박이 이 여행의 중심이에요.</p></section>
       <section class="card" style="border-color:var(--acc)"><h2 style="font-size:19px">패키지로 갈까, 자유여행으로 갈까?</h2><p>${esc(p.pkg.short)}</p><button class="btn pri wide" data-i="pkg">엄마 질문에 대한 답 보기</button></section>`;
     h+=`<section class="sec"><h2>언제 갈까? 출발일 후보</h2><p class="lead">모두 목요일에 가서 일요일에 와요. 누르면 그 날짜로 일정이 바뀌어요.</p>
       ${p.dates.map(d=>`<button class="card dc ${d.id===S.date[S.c]?"on":""}" data-date="${d.id}" aria-pressed="${d.id===S.date[S.c]}">
@@ -476,6 +476,7 @@ function renderView(){const v=S.view;let h="";const p=P();
       ${k.options.map(o=>`<div class="card"><div class="dch"><h3>${esc(o.name)}</h3><span class="pill p-${o.tone}">${esc(o.tag)}</span></div>
         <dl class="kv"><dt>1인</dt><dd>${esc(o.per)}</dd><dt>5명</dt><dd>${esc(o.total)}</dd></dl>
         <div class="blk par"><b>좋은 점</b>${esc(o.good)}</div><div class="blk cau"><b>아쉬운 점</b>${esc(o.bad)}</div></div>`).join("")}
+      <h2>일반 패키지는 보통 이렇게 다녀요</h2><div class="card"><ul class="clean">${k.typical.map(x=>`<li>${esc(x)}</li>`).join("")}</ul><p class="note">온천 호텔 2박이 들어가는 대신, 도야호를 오가느라 버스를 오래 타요. 오타루와 삿포로는 짧게 들러요.</p></div>
       <h2>패키지를 고른다면 이 조건을 확인하세요</h2><div class="card"><ul class="clean">${k.check.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>
       <h2>여행사에 이렇게 요청하세요</h2><p class="lead">가족 단독 패키지로 견적을 받을 때 그대로 보여 주면 되는 일정표예요.</p>
       ${k.days.map((d,i)=>`<div class="card dayhead" style="border-left-color:${DAYC[i]}"><div class="note" style="color:${DAYC[i]};font-weight:800">${i+1}일차 · ${dateLabel(i)}</div><h3>${esc(d.t)}</h3><p>${esc(d.x)}</p></div>`).join("")}
