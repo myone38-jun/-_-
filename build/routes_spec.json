@@ -1,0 +1,512 @@
+{
+ "hk": {
+  "origin": [
+   141.35,
+   42.83
+  ],
+  "region": [
+   140.85,
+   42.35,
+   141.85,
+   43.3
+  ],
+  "details": {
+   "sapporo": [
+    141.33,
+    43.046,
+    141.372,
+    43.078
+   ],
+   "otaru": [
+    140.982,
+    43.183,
+    141.016,
+    43.205
+   ],
+   "noboribetsu": [
+    141.134,
+    42.487,
+    141.16,
+    42.505
+   ],
+   "chitose": [
+    141.66,
+    42.762,
+    141.72,
+    42.802
+   ]
+  },
+  "stops": {
+   "cts": [
+    141.677,
+    42.7869
+   ],
+   "sapporo_st": [
+    141.3508,
+    43.0687
+   ],
+   "hotel_spr": [
+    141.3525,
+    43.0683
+   ],
+   "clock": [
+    141.3536,
+    43.0626
+   ],
+   "odori_xmas": [
+    141.3527,
+    43.0598
+   ],
+   "tvtower": [
+    141.3565,
+    43.0612
+   ],
+   "kanihonke": [
+    141.3525,
+    43.0657
+   ],
+   "otaru_st": [
+    140.9937,
+    43.1977
+   ],
+   "orgel": [
+    141.0077,
+    43.1906
+   ],
+   "letao": [
+    141.0074,
+    43.1913
+   ],
+   "kitaichi": [
+    141.0068,
+    43.1928
+   ],
+   "masazushi": [
+    141.0001,
+    43.1941
+   ],
+   "canal": [
+    141.0012,
+    43.199
+   ],
+   "sankaku": [
+    140.9939,
+    43.1986
+   ],
+   "beergarden": [
+    141.3688,
+    43.0716
+   ],
+   "susukino": [
+    141.3531,
+    43.0556
+   ],
+   "ramen": [
+    141.3543,
+    43.0548
+   ],
+   "nijo": [
+    141.3582,
+    43.0585
+   ],
+   "noboribetsu_st": [
+    141.1805,
+    42.4522
+   ],
+   "ryokan": [
+    141.1455,
+    42.4955
+   ],
+   "jigokudani": [
+    141.147,
+    42.4978
+   ],
+   "enmado": [
+    141.1438,
+    42.4942
+   ],
+   "onsen_bus": [
+    141.1432,
+    42.4925
+   ]
+  },
+  "days": [
+   [
+    [
+     "cts",
+     "sapporo_st",
+     "train"
+    ],
+    [
+     "sapporo_st",
+     "hotel_spr",
+     "walk"
+    ],
+    [
+     "hotel_spr",
+     "clock",
+     "walk"
+    ],
+    [
+     "clock",
+     "odori_xmas",
+     "walk"
+    ],
+    [
+     "odori_xmas",
+     "tvtower",
+     "walk"
+    ],
+    [
+     "tvtower",
+     "kanihonke",
+     "taxi"
+    ],
+    [
+     "kanihonke",
+     "hotel_spr",
+     "walk"
+    ]
+   ],
+   [
+    [
+     "hotel_spr",
+     "sapporo_st",
+     "walk"
+    ],
+    [
+     "sapporo_st",
+     "otaru_st",
+     "train"
+    ],
+    [
+     "otaru_st",
+     "orgel",
+     "taxi"
+    ],
+    [
+     "orgel",
+     "letao",
+     "walk"
+    ],
+    [
+     "letao",
+     "kitaichi",
+     "walk"
+    ],
+    [
+     "kitaichi",
+     "masazushi",
+     "taxi"
+    ],
+    [
+     "masazushi",
+     "canal",
+     "walk"
+    ],
+    [
+     "canal",
+     "otaru_st",
+     "walk"
+    ],
+    [
+     "otaru_st",
+     "sapporo_st",
+     "train"
+    ],
+    [
+     "sapporo_st",
+     "beergarden",
+     "taxi"
+    ],
+    [
+     "beergarden",
+     "hotel_spr",
+     "taxi"
+    ]
+   ],
+   [
+    [
+     "hotel_spr",
+     "nijo",
+     "taxi"
+    ],
+    [
+     "nijo",
+     "sapporo_st",
+     "taxi"
+    ],
+    [
+     "sapporo_st",
+     "noboribetsu_st",
+     "train"
+    ],
+    [
+     "noboribetsu_st",
+     "ryokan",
+     "taxi"
+    ],
+    [
+     "ryokan",
+     "jigokudani",
+     "walk"
+    ],
+    [
+     "jigokudani",
+     "ryokan",
+     "walk"
+    ]
+   ],
+   [
+    [
+     "ryokan",
+     "enmado",
+     "walk"
+    ],
+    [
+     "enmado",
+     "onsen_bus",
+     "walk"
+    ],
+    [
+     "onsen_bus",
+     "cts",
+     "bus"
+    ]
+   ]
+  ]
+ },
+ "tw": {
+  "origin": [
+   121.675,
+   25.125
+  ],
+  "region": [
+   121.4,
+   24.95,
+   121.95,
+   25.3
+  ],
+  "details": {
+   "taipei": [
+    121.5,
+    25.025,
+    121.575,
+    25.11
+   ],
+   "beitou": [
+    121.495,
+    25.128,
+    121.518,
+    25.145
+   ],
+   "yehliu": [
+    121.68,
+    25.198,
+    121.7,
+    25.214
+   ],
+   "shifen": [
+    121.765,
+    25.035,
+    121.795,
+    25.054
+   ],
+   "jiufen": [
+    121.834,
+    25.1,
+    121.856,
+    25.116
+   ]
+  },
+  "stops": {
+   "tsa": [
+    121.5519,
+    25.0637
+   ],
+   "hotel_tpe": [
+    121.5238,
+    25.0543
+   ],
+   "palace": [
+    121.5487,
+    25.1017
+   ],
+   "shinyeh": [
+    121.5237,
+    25.0663
+   ],
+   "ningxia": [
+    121.5153,
+    25.0561
+   ],
+   "yehliu": [
+    121.6904,
+    25.2056
+   ],
+   "queen": [
+    121.693,
+    25.2087
+   ],
+   "shifen_st": [
+    121.7752,
+    25.0413
+   ],
+   "shifen_fall": [
+    121.7874,
+    25.0482
+   ],
+   "jiufen": [
+    121.8452,
+    25.1098
+   ],
+   "amei": [
+    121.844,
+    25.1081
+   ],
+   "cks": [
+    121.5218,
+    25.0346
+   ],
+   "dtf101": [
+    121.5642,
+    25.0335
+   ],
+   "t101": [
+    121.5645,
+    25.0339
+   ],
+   "xinbeitou": [
+    121.503,
+    25.1369
+   ],
+   "beitou_museum": [
+    121.5072,
+    25.1367
+   ],
+   "thermal": [
+    121.511,
+    25.1378
+   ],
+   "hotel_bt": [
+    121.5128,
+    25.1392
+   ]
+  },
+  "days": [
+   [
+    [
+     "tsa",
+     "hotel_tpe",
+     "taxi"
+    ],
+    [
+     "hotel_tpe",
+     "palace",
+     "taxi"
+    ],
+    [
+     "palace",
+     "shinyeh",
+     "taxi"
+    ],
+    [
+     "shinyeh",
+     "ningxia",
+     "taxi"
+    ],
+    [
+     "ningxia",
+     "hotel_tpe",
+     "taxi"
+    ]
+   ],
+   [
+    [
+     "hotel_tpe",
+     "yehliu",
+     "van"
+    ],
+    [
+     "yehliu",
+     "queen",
+     "walk"
+    ],
+    [
+     "queen",
+     "yehliu",
+     "walk"
+    ],
+    [
+     "yehliu",
+     "shifen_st",
+     "van"
+    ],
+    [
+     "shifen_st",
+     "shifen_fall",
+     "van"
+    ],
+    [
+     "shifen_fall",
+     "jiufen",
+     "van"
+    ],
+    [
+     "jiufen",
+     "amei",
+     "walk"
+    ],
+    [
+     "amei",
+     "hotel_tpe",
+     "van"
+    ]
+   ],
+   [
+    [
+     "hotel_tpe",
+     "cks",
+     "taxi"
+    ],
+    [
+     "cks",
+     "t101",
+     "taxi"
+    ],
+    [
+     "t101",
+     "dtf101",
+     "walk"
+    ],
+    [
+     "dtf101",
+     "xinbeitou",
+     "taxi"
+    ],
+    [
+     "xinbeitou",
+     "beitou_museum",
+     "walk"
+    ],
+    [
+     "beitou_museum",
+     "thermal",
+     "walk"
+    ],
+    [
+     "thermal",
+     "hotel_bt",
+     "walk"
+    ]
+   ],
+   [
+    [
+     "hotel_bt",
+     "tsa",
+     "taxi"
+    ]
+   ]
+  ]
+ }
+}
