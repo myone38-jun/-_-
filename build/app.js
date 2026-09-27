@@ -395,7 +395,7 @@ function tourEnd(){tour=null;document.body.classList.remove("touring");$("#tour"
 function renderTourCard(d,i,legEv){const day=P().days[d];const st=day.stops[i];const n=day.stops.length;
   $("#tourT").textContent=`${d+1}일차 ${dateLabel(d)} · ${i+1}/${n}`;
   let h="";
-  if(legEv){h+=`<div class="note"><b>${({train:"기차로",walk:"걸어서",taxi:"택시로",van:"전용 밴으로",bus:"버스로"})[legEv.leg.mode]||""} 이동 중 · ${fmtT(legEv.t0)} → ${fmtT(legEv.t1)} · 약 ${(legEv.leg.len/1000).toFixed(legEv.leg.len<1000?2:1)}km</b></div>`;}
+  if(legEv){h+=`<div class="note"><b>${({train:"기차로",walk:"걸어서",taxi:"택시로",van:"전용 차량으로",bus:"버스로"})[legEv.leg.mode]||""} 이동 중 · ${fmtT(legEv.t0)} → ${fmtT(legEv.t1)} · 약 ${(legEv.leg.len/1000).toFixed(legEv.leg.len<1000?2:1)}km</b></div>`;}
   h+=`<h3>${esc(st.name)}</h3>`+stopBody(d,i);$("#tourBody").innerHTML=h;$("#tourBody").scrollTop=0;}
 
 /* ---------------- UI ---------------- */
