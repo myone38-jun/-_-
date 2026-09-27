@@ -7,7 +7,7 @@ const WD=["일","월","화","수","목","금","토"];
 const won=n=>Math.round(n/10000).toLocaleString("ko-KR")+"만 원";
 const store={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v);}catch(e){return d;}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}};
 
-const S={c:store.get("c","hk"),tab:store.get("tab","glance"),day:-1,time:13*60,planDay:0,
+const S={c:"hk",tab:store.get("tab","glance"),day:-1,time:13*60,planDay:0,
   date:{hk:store.get("date_hk","d1210"),tw:store.get("date_tw","d1210")}, fx:{hk:true,tw:false}};
 if(!PLAN[S.c])S.c="hk";
 const P=()=>PLAN[S.c];
@@ -400,7 +400,7 @@ function renderTourCard(d,i,legEv){const day=P().days[d];const st=day.stops[i];c
 
 /* ---------------- UI ---------------- */
 const META={};function metaOf(c){return META[c]||(META[c]=JSON.parse(document.getElementById("m_"+c).textContent));}
-const INFO=[["air","항공"],["hotel","숙소"],["sight","관광"],["move","이동"],["food","맛집"],["budget","예산"],["prep","준비"]];
+const INFO=[["pkg","패키지?"],["air","항공"],["hotel","숙소"],["sight","관광"],["move","이동"],["food","맛집"],["budget","예산"],["prep","준비"]];
 let mapReady=false,mapStale=true,afterLoad=[];
 function syncDayUI(){const p=P();
   $("#dayChips").innerHTML=`<button class="chip" data-d="-1" aria-pressed="${S.day<0}">전체</button>`+p.days.map((d,i)=>`<button class="chip" data-d="${i}" aria-pressed="${S.day===i}"><i style="background:${DAYC[i]}"></i>${i+1}일차</button>`).join("");
@@ -445,16 +445,12 @@ const total=c=>{const q=PLAN[c];return (q.dates.find(x=>x.id===S.date[c])||q.dat
 
 function renderView(){const v=S.view;let h="";const p=P();
   if(v==="home"){const cost=total(S.c);const d0=p.dates.find(x=>x.id===S.date[S.c]);
-    h+=`<section class="hero"><h2>${esc(p.name)} 3박4일</h2><p>${esc(p.tagline)}</p>
+    h+=`<section class="hero"><h2>북해도 3박4일</h2><p>${esc(p.tagline)}</p>
       <div class="kpis"><div class="kpi"><small>가족 5명 예상 비용</small><b>${won(cost)}</b></div><div class="kpi"><small>1인당</small><b>${won(cost/5)}</b></div>
       <div class="kpi"><small>출발일</small><b>${d0.label.split(" ~ ")[0]}</b></div><div class="kpi"><small>12월 날씨</small><b>${S.c==="hk"?"영하, 눈":"20°C 안팎, 비"}</b></div></div>
       <div class="btns"><button class="btn wide" data-v="plan">일정 보기</button><button class="btn wide" data-v="map">3D 지도 보기</button></div></section>`;
-    const r=(c,k)=>({flight:c==="hk"?"인천→신치토세 2시간 45분":"김포→쑹산 2시간 30분",temp:PLAN[c].glance.temp,walk:c==="hk"?"하루 3~5천 보":"하루 4~7천 보",risk:c==="hk"?"빙판길, 오후 4시 일몰":"잦은 비, 지우펀 계단",cost:won(total(c))}[k]);
-    const rows=[["예상 비용(5명)","cost"],["비행 시간","flight"],["12월 날씨","temp"],["걷는 양","walk"],["조심할 점","risk"]];
-    h+=`<section class="sec"><h2>홋카이도와 대만 비교</h2>
-      <div class="cmp"><div class="hd"><span class="${S.c==="hk"?"on":""}">홋카이도</span><span class="${S.c==="tw"?"on":""}">대만</span></div>
-      ${rows.map(([l,k])=>`<div class="row"><span class="lab">${l}</span><div class="v"><span class="${S.c==="hk"?"on":""}">${esc(r("hk",k))}</span><span class="${S.c==="tw"?"on":""}">${esc(r("tw",k))}</span></div></div>`).join("")}</div>
-      <p class="note">비용은 각 여행지에서 고른 출발일 기준이고, 예비비는 빠져 있어요. 위쪽 버튼으로 두 여행지를 바꿔 볼 수 있어요.</p></section>`;
+    h+=`<section class="card"><h2 style="font-size:19px">여행지는 북해도로 정했어요</h2><p>대만과 비교한 끝에 가족 투표로 북해도(홋카이도)가 됐어요. 눈 덮인 삿포로와 오타루, 온천 료칸 1박이 이 여행의 중심이에요.</p></section>
+      <section class="card" style="border-color:var(--acc)"><h2 style="font-size:19px">패키지로 갈까, 자유여행으로 갈까?</h2><p>${esc(p.pkg.short)}</p><button class="btn pri wide" data-i="pkg">엄마 질문에 대한 답 보기</button></section>`;
     h+=`<section class="sec"><h2>언제 갈까? 출발일 후보</h2><p class="lead">모두 목요일에 가서 일요일에 와요. 누르면 그 날짜로 일정이 바뀌어요.</p>
       ${p.dates.map(d=>`<button class="card dc ${d.id===S.date[S.c]?"on":""}" data-date="${d.id}" aria-pressed="${d.id===S.date[S.c]}">
         <span class="dch"><b>${d.label}</b><span class="pill p-${d.tone}">${d.verdict}</span></span>
@@ -475,6 +471,16 @@ function renderView(){const v=S.view;let h="";const p=P();
         <div class="stb">${stopBody(d,i)}<button class="btn" data-go="${d}:${i}">지도에서 이 장소 보기</button></div></details>`;}).join("")}</div>`;}
   if(v==="info"){const t=S.info;
     h+=`<div class="sub">${INFO.map(([k,l])=>`<button data-i="${k}" aria-pressed="${k===t}">${l}</button>`).join("")}</div>`;
+    if(t==="pkg"){const k=p.pkg;h+=`<section class="sec"><h2>패키지로 갈까?</h2><p class="lead">${esc(k.short)}</p>
+      <div class="card" style="border-color:var(--acc)"><h3>결론</h3><p>${esc(k.verdict)}</p></div>
+      ${k.options.map(o=>`<div class="card"><div class="dch"><h3>${esc(o.name)}</h3><span class="pill p-${o.tone}">${esc(o.tag)}</span></div>
+        <dl class="kv"><dt>1인</dt><dd>${esc(o.per)}</dd><dt>5명</dt><dd>${esc(o.total)}</dd></dl>
+        <div class="blk par"><b>좋은 점</b>${esc(o.good)}</div><div class="blk cau"><b>아쉬운 점</b>${esc(o.bad)}</div></div>`).join("")}
+      <h2>패키지를 고른다면 이 조건을 확인하세요</h2><div class="card"><ul class="clean">${k.check.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>
+      <h2>여행사에 이렇게 요청하세요</h2><p class="lead">가족 단독 패키지로 견적을 받을 때 그대로 보여 주면 되는 일정표예요.</p>
+      ${k.days.map((d,i)=>`<div class="card dayhead" style="border-left-color:${DAYC[i]}"><div class="note" style="color:${DAYC[i]};font-weight:800">${i+1}일차 · ${dateLabel(i)}</div><h3>${esc(d.t)}</h3><p>${esc(d.x)}</p></div>`).join("")}
+      <div class="card"><h3>여행사에 보낼 문장</h3><p id="pkgMsg" style="white-space:pre-line">${esc(k.msg)}</p><button class="btn" data-copymsg="1">문장 복사</button></div>
+      <p class="note">${esc(k.src)}</p></section>`;}
     if(t==="air")h+=`<section class="sec"><h2>항공편</h2><p class="lead">예약 전에 항공사 앱에서 편명과 시각을 꼭 다시 확인하세요. 겨울 시간표가 아직 다 나오지 않았어요.</p>
       ${p.flights.map(f=>`<div class="card"><div><span class="pill ${f.tag==="추천"?"p-best":"p-ok"}">${f.tag}</span> <b>${esc(f.air)}</b></div>
       <dl class="kv"><dt>가는 편</dt><dd>${esc(f.out)}</dd><dt>오는 편</dt><dd>${esc(f.back)}</dd><dt>운항</dt><dd>${esc(f.days)}</dd><dt>요금</dt><dd>${esc(f.fare)}</dd></dl><p class="note">${esc(f.note)}</p></div>`).join("")}
@@ -512,7 +518,7 @@ function setCountry(c){if(tour)tourEnd();S.c=c;store.set("c",c);document.documen
 document.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;const ds=b.dataset;
   if(b.id==="sw-hk")return setCountry("hk");if(b.id==="sw-tw")return setCountry("tw");
   if(ds.v){setView(ds.v);return;}
-  if(ds.i){S.info=ds.i;store.set("info",ds.i);renderView();return;}
+  if(ds.i){S.info=ds.i;store.set("info",ds.i);if(S.view!=="info")setView("info");else renderView();return;}
   if(ds.pd!==undefined){S.planDay=+ds.pd;if(S.view!=="plan")setView("plan");else{renderView();}return;}
   if(ds.open){const [d,i]=ds.open.split(":").map(Number);$("#pcard").hidden=true;S.planDay=d;setView("plan");const el=document.getElementById(`st-${d}-${i}`);if(el){el.open=true;el.scrollIntoView({block:"center"});}return;}
   if(b.id==="pcX"){$("#pcard").hidden=true;return;}
@@ -524,6 +530,7 @@ document.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)r
   if(ds.ll){const ll=ds.ll.split(",").map(Number);goMap(()=>flyLL(ll));return;}
   if(ds.date){S.date[S.c]=ds.date;store.set("date_"+S.c,ds.date);syncDayUI();if(R)applyTime();renderView();return;}
   if(ds.card!==undefined){const x=P().phraseCards[+ds.card];const sc=$("#showCard");sc.innerHTML=`<div class="l" lang="${P().lang}">${esc(x.local)}</div><div class="k">${esc(x.ko)}</div><button id="scClose">닫기</button>`;sc.hidden=false;return;}
+  if(ds.copymsg){const done=()=>{b.textContent="복사됨";setTimeout(()=>b.textContent="문장 복사",1500);};try{navigator.clipboard.writeText(P().pkg.msg).then(done,()=>{b.textContent="길게 눌러 복사";});}catch(err){b.textContent="길게 눌러 복사";}return;}
   if(b.id==="scClose"){$("#showCard").hidden=true;return;}
   if(ds.copy!==undefined){const x=P().phrases[+ds.copy];const done=()=>{b.textContent="복사됨";setTimeout(()=>b.textContent="복사",1500);};
     try{navigator.clipboard.writeText(x.local).then(done,()=>{b.textContent="길게 눌러 복사";});}catch(err){b.textContent="길게 눌러 복사";}return;}
@@ -542,8 +549,7 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape"){if(!$("#showCard").
 
 /* boot */
 S.view=store.get("view","home");if(!["home","plan","map","info","talk"].includes(S.view))S.view="home";
-S.info=store.get("info","air");if(!INFO.some(x=>x[0]===S.info))S.info="air";
+S.info=store.get("info","pkg");if(!INFO.some(x=>x[0]===S.info))S.info="air";
 document.documentElement.setAttribute("data-c",S.c);
-$("#sw-hk").setAttribute("aria-pressed",S.c==="hk");$("#sw-tw").setAttribute("aria-pressed",S.c==="tw");
 syncDayUI();setView(S.view);
 })();

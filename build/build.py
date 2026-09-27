@@ -5,10 +5,10 @@ t=open(B+"/template.html").read()
 three=open(NPM+"three-0.160.0/build/three.min.js").read()
 ffl=open(NPM+"fflate-0.8.2/umd/index.js").read()
 data=""
-for c in ("hk","tw"):
+for c in ("hk",):
     meta=open(f"{B}/meta_{c}.json").read()
     data+=f'<script type="application/json" id="m_{c}">{meta}</script>\n<script type="text/plain" id="d_{c}">{open(f"{B}/data_{c}.b64").read()}</script>\n'
-plans=open(B+"/plan_hk.js").read()+"\n"+open(B+"/plan_tw.js").read()
+plans=open(B+"/plan_hk.js").read()
 app=open(B+"/app.js").read()
 for s in (three,ffl,plans,app): assert "</script" not in s.lower()
 t=t.replace("<script>/*THREE*/</script>","<script>"+three+"</script>").replace("<script>/*FFLATE*/</script>","<script>"+ffl+"</script>")

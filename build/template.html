@@ -1,5 +1,5 @@
-<title>12월 가족여행 지도</title>
-<meta name="description" content="홋카이도와 대만 3박4일 가족여행 계획과 3D 여행지도">
+<title>12월 북해도 가족여행</title>
+<meta name="description" content="북해도(홋카이도) 3박4일 가족여행 계획과 3D 여행지도">
 <style>
 :root{
   --bg:#EEF2F5; --surface:#FFFFFF; --surface2:#F4F6F8; --ink:#141C24; --muted:#4F5D6B; --line:#D5DCE3;
@@ -28,6 +28,7 @@ p{margin:0}
 /* header */
 .hdr{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;height:var(--hh);background:var(--surface);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px;padding-inline:16px}
 .hdr h1{font-size:17px;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.badge{flex:none;background:var(--acc);color:var(--acc-ink);font-weight:800;font-size:14px;border-radius:999px;padding:5px 12px}
 .seg{display:flex;background:var(--surface2);border:1px solid var(--line);border-radius:11px;padding:3px;gap:2px;flex:none}
 .seg button{border:0;background:transparent;border-radius:8px;padding:6px 13px;font-weight:700;font-size:15px;color:var(--muted)}
 .seg button[aria-pressed="true"]{background:var(--acc);color:var(--acc-ink)}
@@ -187,11 +188,8 @@ ul.clean{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
 </style>
 <!--BODY-->
 <header class="hdr">
-  <h1>우리 가족 12월 여행</h1>
-  <div class="seg" role="group" aria-label="여행지 선택">
-    <button id="sw-hk" aria-pressed="true">홋카이도</button>
-    <button id="sw-tw" aria-pressed="false">대만</button>
-  </div>
+  <h1>우리 가족 북해도 여행</h1>
+  <span class="badge" id="badge">북해도 확정</span>
 </header>
 <main id="view" class="view"></main>
 <section id="mapWrap" aria-label="3D 여행지도" hidden>

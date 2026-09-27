@@ -229,22 +229,12 @@
     [
      "hotel_spr",
      "nijo",
-     "taxi"
+     "van"
     ],
     [
      "nijo",
-     "sapporo_st",
-     "taxi"
-    ],
-    [
-     "sapporo_st",
-     "noboribetsu_st",
-     "train"
-    ],
-    [
-     "noboribetsu_st",
      "ryokan",
-     "taxi"
+     "van"
     ],
     [
      "ryokan",
