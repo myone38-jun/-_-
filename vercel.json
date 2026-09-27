@@ -1,0 +1,3 @@
+{
+  "rewrites": [{ "source": "/", "destination": "/family-trip-december.html" }]
+}
